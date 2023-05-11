@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from app.views import home, GenreView, GenreDetailView, ArtistView, ArtistDetailView, AlbumView, AlbumDetailView, SongView, SongDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/', home),
+    path('api/genre/', GenreView.as_view()),
+    path('api/genre/<int:pk>/', GenreDetailView.as_view()),
+    path('api/artist/', ArtistView.as_view()),
+    path('api/artist/<int:pk/', ArtistDetailView.as_view()),
+    path('api/album/', AlbumView.as_view()),
+    path('api/album/<int:pk/', AlbumDetailView.as_view()),
+    path('api/song/', SongView.as_view()),
+    path('api/song/<int:pk/', SongDetailView.as_view()),
+    
 ]

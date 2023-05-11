@@ -25,10 +25,10 @@ class Artist(models.Model):
         return self.name
     
 class Song(models.Model):
-    album = models.ForeignKey(Album, on_delete=models.CASCADE)
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name="records")
     title = models.CharField(max_length=50)
     length = models.BigIntegerField()
     track_number = models.BigIntegerField()
     
     def __str__(self):
-        return self.title + " from album: " + self.album
+        return self.title

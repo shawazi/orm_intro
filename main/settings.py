@@ -40,6 +40,10 @@ INSTALLED_APPS = [
     
     # mine
     'app',
+    
+    # third
+    
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -5,25 +5,28 @@ class GenreSer(serializers.ModelSerializer):
     
     class Meta:
         model = Genre
-        fields = ["name"]
+        fields = ["id", "name"]
         
 class AlbumSer(serializers.ModelSerializer):
-    genre = serializers.StringRelatedField()
+    genre = serializers.StringRelatedField() # not available for post method
+    genre_id = serializers.IntegerField(write_only=True) # not available for get method
+    records = serializers.StringRelatedField(many=True)
     
     class Meta:
         model = Album
-        fields = ["title", "genre", "release_date"]
+        fields = ["id", "genre_id", "title", "genre", "release_date", "records"]
         
 class ArtistSer(serializers.ModelSerializer):
-    albums = AlbumSer(many=True)
+    # albums = AlbumSer(many=True)
     
     class Meta:
         model = Artist
-        fields = ["name", "albums"]
+        fields = ["id", "name", "albums"]
     
 class SongSer(serializers.ModelSerializer):
-    album = serializers.StringRelatedField()
-    
+    album = serializers.StringRelatedField(many=True)
+    album_id = serializers.IntegerField(write_only=True)
+
     class Meta:
         model = Song
-        fields = ["album", "title", "length", "track_number"]
+        fields = ["id", "album", "title", "length", "track_number"]
